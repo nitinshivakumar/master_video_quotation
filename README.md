@@ -145,12 +145,6 @@ Edit `index.html` to add/remove services or change pricing:
 </div>
 ```
 
-## 📧 Contact
-
-**Shivakumar G**
-- Phone: 9845452391
-- Location: Bengaluru - 560079
-
 ## 🔧 Technical Stack
 
 - **HTML5**: Structure and content

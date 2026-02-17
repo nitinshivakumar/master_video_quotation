@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Master Video Photography - Professional Photography and Videography Services in Bengaluru">
-    <meta name="keywords" content="photography, videography, wedding photography, drone coverage, Bengaluru">
-    <meta name="author" content="Shivakumar G">
-    <title>Master Video Photography - Get Your Quotation</title>
+    <title>Master Video Photography - Professional Services</title>
     
     <!-- Google Fonts - Barlow -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- jsPDF Library for PDF Generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -19,244 +17,433 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="logo.png" alt="Master Video Photography" class="logo-image">
+                <div class="logo-wrapper">
+                    <img src="logo.png" alt="Master Video Photography" class="logo-image">
+                </div>
                 <div class="logo-text">
                     <span class="logo-title">Master Video</span>
                     <span class="logo-subtitle">Photography</span>
                 </div>
             </div>
-            <div class="nav-contact">
-                <a href="tel:9845452391" class="contact-btn">📞 9845452391</a>
+            <div class="nav-right">
+                <a href="tel:9845452391" class="contact-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    9845452391
+                </a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <img src="logo.png" alt="Master Video Photography" class="hero-logo">
-            <h1 class="hero-title">Capture Your Special Moments</h1>
+            <div class="logo-hero-wrapper">
+                <img src="logo.png" alt="Master Video Photography" class="hero-logo">
+            </div>
+            <h1 class="hero-title">
+                <span class="word">Capture</span>
+                <span class="word">Your</span>
+                <span class="word">Special</span>
+                <span class="word">Moments</span>
+            </h1>
             <p class="hero-subtitle">Professional Photography & Videography Services in Bengaluru</p>
-            <a href="#quotation" class="cta-button">Get Your Quotation</a>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="1000">0</div>
+                    <div class="stat-label">Events Covered</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+            </div>
+            <a href="#quotation" class="cta-button">
+                <span>Get Your Quotation</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            <p>Scroll Down</p>
         </div>
     </section>
 
-    <!-- Quotation Section -->
+    <!-- Services Overview -->
+    <section class="services-overview">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Services</span>
+                <h2>What We Offer</h2>
+                <p>Choose from our premium photography and videography services</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card" data-category="photography">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h3>Photography</h3>
+                    <p>Traditional, Candid & Photo Booth Coverage</p>
+                    <div class="service-badge">3 Services</div>
+                </div>
+
+                <div class="service-card" data-category="videography">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                        </svg>
+                    </div>
+                    <h3>Videography</h3>
+                    <p>Traditional, Candid & Professional Editing</p>
+                    <div class="service-badge">3 Services</div>
+                </div>
+
+                <div class="service-card" data-category="additional">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                        </svg>
+                    </div>
+                    <h3>Special Add-ons</h3>
+                    <p>LED Wall, Drone & Live Streaming</p>
+                    <div class="service-badge">3 Services</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quotation Builder Section -->
     <section id="quotation" class="quotation-section">
         <div class="container">
             <div class="section-header">
-                <h2>Build Your Custom Package</h2>
-                <p>Select the services and number of sessions you need</p>
+                <span class="section-tag">Build Your Package</span>
+                <h2>Customize Your Experience</h2>
+                <p>Select services and sessions to get your personalized quotation</p>
             </div>
 
-            <div class="services">
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-info">
+                    <span id="selected-count">0 services selected</span>
+                    <span id="progress-percentage">0%</span>
+                </div>
+            </div>
+
+            <div class="services-builder">
                 <!-- Photography Services -->
-                <div class="service-category">
-                    <h3 class="category-title">
-                        <span class="category-icon">📷</span>
-                        Photography Services
-                    </h3>
+                <div class="service-category-card">
+                    <div class="category-header">
+                        <div class="category-icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                <circle cx="12" cy="13" r="4"></circle>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Photography Services</h3>
+                            <p>Capture every moment beautifully</p>
+                        </div>
+                    </div>
                     
-                    <div class="service-item" data-id="traditional-photo" data-price="7000">
-                        <div class="service-info">
-                            <div class="service-name">Traditional Photography</div>
-                            <div class="service-description">Classic posed photography for formal events</div>
-                            <div class="service-price">₹ 7,000 <span class="per-session">per session</span></div>
-                        </div>
-                        <div class="service-controls">
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus" onclick="updateQuantity('traditional-photo', -1)">−</button>
-                                <input type="number" class="quantity-input" value="0" readonly>
-                                <button class="quantity-btn plus" onclick="updateQuantity('traditional-photo', 1)">+</button>
+                    <div class="service-items">
+                        <div class="service-item-modern" data-id="traditional-photo" data-price="7000">
+                            <div class="service-left">
+                                <div class="service-check"></div>
+                                <div class="service-details">
+                                    <h4>Traditional Photography</h4>
+                                    <p>Classic posed photography for formal events</p>
+                                    <div class="price-tag">₹7,000<span>/session</span></div>
+                                </div>
                             </div>
-                            <div class="service-total">₹ 0</div>
+                            <div class="service-right">
+                                <div class="quantity-modern">
+                                    <button class="qty-btn" onclick="updateQuantity('traditional-photo', -1)">−</button>
+                                    <input type="number" class="qty-input" value="0" readonly>
+                                    <button class="qty-btn" onclick="updateQuantity('traditional-photo', 1)">+</button>
+                                </div>
+                                <div class="item-total">₹0</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="service-item" data-id="photo-booth" data-price="7000">
-                        <div class="service-info">
-                            <div class="service-name">Photo Booth Coverage</div>
-                            <div class="service-description">Fun and interactive photo booth experience</div>
-                            <div class="service-price">₹ 7,000 <span class="per-session">per session</span></div>
-                        </div>
-                        <div class="service-controls">
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus" onclick="updateQuantity('photo-booth', -1)">−</button>
-                                <input type="number" class="quantity-input" value="0" readonly>
-                                <button class="quantity-btn plus" onclick="updateQuantity('photo-booth', 1)">+</button>
+                        <div class="service-item-modern" data-id="photo-booth" data-price="7000">
+                            <div class="service-left">
+                                <div class="service-check"></div>
+                                <div class="service-details">
+                                    <h4>Photo Booth Coverage</h4>
+                                    <p>Fun and interactive photo booth experience</p>
+                                    <div class="price-tag">₹7,000<span>/session</span></div>
+                                </div>
                             </div>
-                            <div class="service-total">₹ 0</div>
+                            <div class="service-right">
+                                <div class="quantity-modern">
+                                    <button class="qty-btn" onclick="updateQuantity('photo-booth', -1)">−</button>
+                                    <input type="number" class="qty-input" value="0" readonly>
+                                    <button class="qty-btn" onclick="updateQuantity('photo-booth', 1)">+</button>
+                                </div>
+                                <div class="item-total">₹0</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="service-item" data-id="candid-photo" data-price="15000">
-                        <div class="service-info">
-                            <div class="service-name">Candid Photography</div>
-                            <div class="service-description">Natural, unposed moments captured beautifully</div>
-                            <div class="service-price">₹ 15,000 <span class="per-session">per session</span></div>
-                        </div>
-                        <div class="service-controls">
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus" onclick="updateQuantity('candid-photo', -1)">−</button>
-                                <input type="number" class="quantity-input" value="0" readonly>
-                                <button class="quantity-btn plus" onclick="updateQuantity('candid-photo', 1)">+</button>
+                        <div class="service-item-modern" data-id="candid-photo" data-price="15000">
+                            <div class="service-left">
+                                <div class="service-check"></div>
+                                <div class="service-details">
+                                    <h4>Candid Photography</h4>
+                                    <p>Natural, unposed moments captured beautifully</p>
+                                    <div class="price-tag">₹15,000<span>/session</span></div>
+                                </div>
                             </div>
-                            <div class="service-total">₹ 0</div>
+                            <div class="service-right">
+                                <div class="quantity-modern">
+                                    <button class="qty-btn" onclick="updateQuantity('candid-photo', -1)">−</button>
+                                    <input type="number" class="qty-input" value="0" readonly>
+                                    <button class="qty-btn" onclick="updateQuantity('candid-photo', 1)">+</button>
+                                </div>
+                                <div class="item-total">₹0</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Videography Services -->
-                <div class="service-category">
-                    <h3 class="category-title">
-                        <span class="category-icon">🎥</span>
-                        Videography Services
-                    </h3>
+                <div class="service-category-card">
+                    <div class="category-header">
+                        <div class="category-icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Videography Services</h3>
+                            <p>Cinematic storytelling at its best</p>
+                        </div>
+                    </div>
                     
-                    <div class="service-item" data-id="traditional-video" data-price="8000">
-                        <div class="service-info">
-                            <div class="service-name">Traditional Videography</div>
-                            <div class="service-description">Professional video coverage of your event</div>
-                            <div class="service-price">₹ 8,000 <span class="per-session">per session</span></div>
-                        </div>
-                        <div class="service-controls">
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus" onclick="updateQuantity('traditional-video', -1)">−</button>
-                                <input type="number" class="quantity-input" value="0" readonly>
-                                <button class="quantity-btn plus" onclick="updateQuantity('traditional-video', 1)">+</button>
+                    <div class="service-items">
+                        <div class="service-item-modern" data-id="traditional-video" data-price="8000">
+                            <div class="service-left">
+                                <div class="service-check"></div>
+                                <div class="service-details">
+                                    <h4>Traditional Videography</h4>
+                                    <p>Professional video coverage of your event</p>
+                                    <div class="price-tag">₹8,000<span>/session</span></div>
+                                </div>
                             </div>
-                            <div class="service-total">₹ 0</div>
+                            <div class="service-right">
+                                <div class="quantity-modern">
+                                    <button class="qty-btn" onclick="updateQuantity('traditional-video', -1)">−</button>
+                                    <input type="number" class="qty-input" value="0" readonly>
+                                    <button class="qty-btn" onclick="updateQuantity('traditional-video', 1)">+</button>
+                                </div>
+                                <div class="item-total">₹0</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="service-item" data-id="candid-video" data-price="20000">
-                        <div class="service-info">
-                            <div class="service-name">Candid Videography</div>
-                            <div class="service-description">Cinematic storytelling of your special day</div>
-                            <div class="service-price">₹ 20,000 <span class="per-session">per session</span></div>
-                        </div>
-                        <div class="service-controls">
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus" onclick="updateQuantity('candid-video', -1)">−</button>
-                                <input type="number" class="quantity-input" value="0" readonly>
-                                <button class="quantity-btn plus" onclick="updateQuantity('candid-video', 1)">+</button>
+                        <div class="service-item-modern" data-id="candid-video" data-price="20000">
+                            <div class="service-left">
+                                <div class="service-check"></div>
+                                <div class="service-details">
+                                    <h4>Candid Videography</h4>
+                                    <p>Cinematic storytelling of your special day</p>
+                                    <div class="price-tag">₹20,000<span>/session</span></div>
+                                </div>
                             </div>
-                            <div class="service-total">₹ 0</div>
+                            <div class="service-right">
+                                <div class="quantity-modern">
+                                    <button class="qty-btn" onclick="updateQuantity('candid-video', -1)">−</button>
+                                    <input type="number" class="qty-input" value="0" readonly>
+                                    <button class="qty-btn" onclick="updateQuantity('candid-video', 1)">+</button>
+                                </div>
+                                <div class="item-total">₹0</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="service-item" data-id="video-mixing" data-price="15000">
-                        <div class="service-info">
-                            <div class="service-name">Video Mixing</div>
-                            <div class="service-description">Professional editing and post-production</div>
-                            <div class="service-price">₹ 15,000 <span class="per-session">per session</span></div>
-                        </div>
-                        <div class="service-controls">
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus" onclick="updateQuantity('video-mixing', -1)">−</button>
-                                <input type="number" class="quantity-input" value="0" readonly>
-                                <button class="quantity-btn plus" onclick="updateQuantity('video-mixing', 1)">+</button>
+                        <div class="service-item-modern" data-id="video-mixing" data-price="15000">
+                            <div class="service-left">
+                                <div class="service-check"></div>
+                                <div class="service-details">
+                                    <h4>Video Mixing</h4>
+                                    <p>Professional editing and post-production</p>
+                                    <div class="price-tag">₹15,000<span>/session</span></div>
+                                </div>
                             </div>
-                            <div class="service-total">₹ 0</div>
+                            <div class="service-right">
+                                <div class="quantity-modern">
+                                    <button class="qty-btn" onclick="updateQuantity('video-mixing', -1)">−</button>
+                                    <input type="number" class="qty-input" value="0" readonly>
+                                    <button class="qty-btn" onclick="updateQuantity('video-mixing', 1)">+</button>
+                                </div>
+                                <div class="item-total">₹0</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Additional Services -->
-                <div class="service-category">
-                    <h3 class="category-title">
-                        <span class="category-icon">✨</span>
-                        Additional Services
-                    </h3>
+                <div class="service-category-card">
+                    <div class="category-header">
+                        <div class="category-icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Premium Add-ons</h3>
+                            <p>Enhance your event experience</p>
+                        </div>
+                    </div>
                     
-                    <div class="service-item" data-id="led-wall" data-price="10000">
-                        <div class="service-info">
-                            <div class="service-name">LED Wall (6 x 10 feet)</div>
-                            <div class="service-description">High-quality LED display for your event</div>
-                            <div class="service-price">₹ 10,000 <span class="per-session">per session</span></div>
-                        </div>
-                        <div class="service-controls">
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus" onclick="updateQuantity('led-wall', -1)">−</button>
-                                <input type="number" class="quantity-input" value="0" readonly>
-                                <button class="quantity-btn plus" onclick="updateQuantity('led-wall', 1)">+</button>
+                    <div class="service-items">
+                        <div class="service-item-modern" data-id="led-wall" data-price="10000">
+                            <div class="service-left">
+                                <div class="service-check"></div>
+                                <div class="service-details">
+                                    <h4>LED Wall (6 x 10 feet)</h4>
+                                    <p>High-quality LED display for your event</p>
+                                    <div class="price-tag">₹10,000<span>/session</span></div>
+                                </div>
                             </div>
-                            <div class="service-total">₹ 0</div>
+                            <div class="service-right">
+                                <div class="quantity-modern">
+                                    <button class="qty-btn" onclick="updateQuantity('led-wall', -1)">−</button>
+                                    <input type="number" class="qty-input" value="0" readonly>
+                                    <button class="qty-btn" onclick="updateQuantity('led-wall', 1)">+</button>
+                                </div>
+                                <div class="item-total">₹0</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="service-item" data-id="drone" data-price="10000">
-                        <div class="service-info">
-                            <div class="service-name">Drone Coverage</div>
-                            <div class="service-description">Stunning aerial shots and videos</div>
-                            <div class="service-price">₹ 10,000 <span class="per-session">per session</span></div>
-                        </div>
-                        <div class="service-controls">
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus" onclick="updateQuantity('drone', -1)">−</button>
-                                <input type="number" class="quantity-input" value="0" readonly>
-                                <button class="quantity-btn plus" onclick="updateQuantity('drone', 1)">+</button>
+                        <div class="service-item-modern" data-id="drone" data-price="10000">
+                            <div class="service-left">
+                                <div class="service-check"></div>
+                                <div class="service-details">
+                                    <h4>Drone Coverage</h4>
+                                    <p>Stunning aerial shots and videos</p>
+                                    <div class="price-tag">₹10,000<span>/session</span></div>
+                                </div>
                             </div>
-                            <div class="service-total">₹ 0</div>
+                            <div class="service-right">
+                                <div class="quantity-modern">
+                                    <button class="qty-btn" onclick="updateQuantity('drone', -1)">−</button>
+                                    <input type="number" class="qty-input" value="0" readonly>
+                                    <button class="qty-btn" onclick="updateQuantity('drone', 1)">+</button>
+                                </div>
+                                <div class="item-total">₹0</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="service-item" data-id="live-streaming" data-price="8000">
-                        <div class="service-info">
-                            <div class="service-name">Live Video Streaming</div>
-                            <div class="service-description">Stream your event live (5 hours)</div>
-                            <div class="service-price">₹ 8,000 <span class="per-session">per session</span></div>
-                        </div>
-                        <div class="service-controls">
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus" onclick="updateQuantity('live-streaming', -1)">−</button>
-                                <input type="number" class="quantity-input" value="0" readonly>
-                                <button class="quantity-btn plus" onclick="updateQuantity('live-streaming', 1)">+</button>
+                        <div class="service-item-modern" data-id="live-streaming" data-price="8000">
+                            <div class="service-left">
+                                <div class="service-check"></div>
+                                <div class="service-details">
+                                    <h4>Live Video Streaming</h4>
+                                    <p>Stream your event live (5 hours)</p>
+                                    <div class="price-tag">₹8,000<span>/session</span></div>
+                                </div>
                             </div>
-                            <div class="service-total">₹ 0</div>
+                            <div class="service-right">
+                                <div class="quantity-modern">
+                                    <button class="qty-btn" onclick="updateQuantity('live-streaming', -1)">−</button>
+                                    <input type="number" class="qty-input" value="0" readonly>
+                                    <button class="qty-btn" onclick="updateQuantity('live-streaming', 1)">+</button>
+                                </div>
+                                <div class="item-total">₹0</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Album Information -->
-                <div class="album-info">
-                    <h4>📸 Album Pricing</h4>
-                    <div class="album-details">
-                        <p>• ₹ 300 per sheet (Size: 12 x 30 or 12 x 36 inches)</p>
-                        <p>• ₹ 1,500 per pad</p>
+                <!-- Album Info Card -->
+                <div class="album-card">
+                    <div class="album-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
+                    <div class="album-content">
+                        <h4>Album Pricing</h4>
+                        <div class="album-options">
+                            <div class="album-option">
+                                <span class="album-price">₹300</span>
+                                <span class="album-desc">per sheet (12x30 or 12x36 inches)</span>
+                            </div>
+                            <div class="album-option">
+                                <span class="album-price">₹1,500</span>
+                                <span class="album-desc">per pad</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Summary Card -->
-            <div class="summary-card">
-                <div class="summary-header">
-                    <h3>Your Quotation Summary</h3>
-                </div>
-                <div class="summary-body">
-                    <div class="summary-row">
-                        <span class="summary-label">Total Sessions Selected:</span>
-                        <span class="summary-value" id="total-sessions">0</span>
-                    </div>
-                    <div class="summary-divider"></div>
-                    <div class="summary-row total">
-                        <span class="summary-label">TOTAL AMOUNT</span>
-                        <span class="summary-value" id="total-amount">₹ 0</span>
-                    </div>
-                </div>
-                <div class="summary-actions">
-                    <button class="btn btn-secondary" onclick="resetQuotation()">
-                        <span>🔄</span> Reset
-                    </button>
-                    <button class="btn btn-primary" onclick="downloadPDFQuotation()">
-                        <span>📥</span> Download PDF
+            <!-- Floating Summary Card -->
+            <div class="summary-float" id="summary-float">
+                <div class="summary-header-float">
+                    <h3>Your Quotation</h3>
+                    <button class="minimize-btn" onclick="toggleSummary()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="18 15 12 9 6 15"></polyline>
+                        </svg>
                     </button>
                 </div>
-                <p class="note">Note: The item coverage above is based on each session.</p>
+                <div class="summary-body-float">
+                    <div class="summary-stat">
+                        <div class="stat-label-sm">Sessions</div>
+                        <div class="stat-value-sm" id="total-sessions-float">0</div>
+                    </div>
+                    <div class="summary-total-float">
+                        <div class="total-label">Total Amount</div>
+                        <div class="total-amount" id="total-amount-float">₹0</div>
+                    </div>
+                    <div class="summary-actions-float">
+                        <button class="btn-float btn-reset" onclick="resetQuotation()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="1 4 1 10 7 10"></polyline>
+                                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                            </svg>
+                            Reset
+                        </button>
+                        <button class="btn-float btn-download" onclick="downloadPDFQuotation()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Download PDF
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -264,20 +451,41 @@
     <!-- Contact Section -->
     <section class="contact-section">
         <div class="container">
-            <h2>Get In Touch</h2>
+            <div class="section-header">
+                <span class="section-tag">Get in Touch</span>
+                <h2>Contact Us</h2>
+                <p>We're here to help bring your vision to life</p>
+            </div>
+            
             <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="contact-icon">📞</div>
+                <div class="contact-card-modern">
+                    <div class="contact-icon-modern">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                    </div>
                     <h4>Phone</h4>
                     <p><a href="tel:9845452391">9845452391</a></p>
                 </div>
-                <div class="contact-card">
-                    <div class="contact-icon">📍</div>
+
+                <div class="contact-card-modern">
+                    <div class="contact-icon-modern">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
                     <h4>Location</h4>
                     <p>Bengaluru - 560079</p>
                 </div>
-                <div class="contact-card">
-                    <div class="contact-icon">👤</div>
+
+                <div class="contact-card-modern">
+                    <div class="contact-icon-modern">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
                     <h4>Contact Person</h4>
                     <p>Shivakumar G</p>
                 </div>
@@ -288,9 +496,17 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <img src="logo.png" alt="Master Video Photography" class="footer-logo">
-            <p>&copy; 2024 Master Video Photography. All rights reserved.</p>
-            <p>Professional Photography & Videography Services</p>
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <div class="footer-logo-wrapper">
+                        <img src="logo.png" alt="Master Video Photography" class="footer-logo">
+                    </div>
+                    <p>Capturing memories that last a lifetime</p>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Master Video Photography. All rights reserved.</p>
+                </div>
+            </div>
         </div>
     </footer>
 

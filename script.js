@@ -167,259 +167,240 @@ function loadImageAsBase64(src) {
     });
 }
 
+// Helper: format price without rupee symbol (jsPDF can't render ₹)
+function fmt(amount) {
+    return 'Rs. ' + Number(amount).toLocaleString('en-IN');
+}
+
 // Download PDF quotation
 async function downloadPDFQuotation() {
-    const totalSessions = document.getElementById('total-sessions-float').textContent;
-    
-    if (parseInt(totalSessions) === 0) {
+    const totalSessionsEl = document.getElementById('total-sessions-float');
+    const totalAmountEl   = document.getElementById('total-amount-float');
+    const totalSessions   = parseInt(totalSessionsEl.textContent) || 0;
+
+    if (totalSessions === 0) {
         showNotification('Please select at least one service to generate a quotation.', 'warning');
         return;
     }
-    
+
     try {
         const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        
-        // Brand colors
-        const primary = [61, 90, 107];
-        const accentBlue = [43, 159, 216];
-        const accentTurquoise = [78, 201, 201];
-        const textDark = [44, 62, 80];
-        const textLight = [108, 117, 125];
-        
-        let y = 20;
-        
-        // Load and add logo
+        const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+
+        // ── Brand colours ──────────────────────────────────────────
+        const cPrimary      = [61,  90,  107];
+        const cBlue         = [43,  159, 216];
+        const cTurquoise    = [78,  201, 201];
+        const cDark         = [44,  62,  80];
+        const cLight        = [108, 117, 125];
+        const cWhite        = [255, 255, 255];
+
+        let y = 15;
+
+        // ── Logo ────────────────────────────────────────────────────
         try {
-            const logoImg = await loadImageAsBase64('logo.png');
-            doc.addImage(logoImg, 'PNG', 75, y, 60, 25);
-            y += 30;
+            const logoData = await loadImageAsBase64('logo.png');
+            // white box behind logo
+            doc.setFillColor(255, 255, 255);
+            doc.roundedRect(70, y, 70, 30, 4, 4, 'F');
+            doc.addImage(logoData, 'PNG', 72, y + 1, 66, 28);
+            y += 36;
         } catch (e) {
             y += 5;
         }
-        
-        // Header line
-        doc.setDrawColor(...accentBlue);
-        doc.setLineWidth(1);
+
+        // ── Divider + Title ─────────────────────────────────────────
+        doc.setDrawColor(...cBlue);
+        doc.setLineWidth(0.8);
         doc.line(20, y, 190, y);
-        y += 10;
-        
-        // Title
-        doc.setFontSize(24);
-        doc.setFont('helvetica', 'bold');
-        doc.setTextColor(...accentBlue);
-        doc.text('QUOTATION', 105, y, { align: 'center' });
-        y += 15;
-        
-        // Date
-        const date = new Date().toLocaleDateString('en-IN', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        });
-        doc.setFontSize(10);
-        doc.setFont('helvetica', 'normal');
-        doc.setTextColor(...textLight);
-        doc.text(`Date: ${date}`, 105, y, { align: 'center' });
-        y += 15;
-        
-        // Business details box
-        doc.setDrawColor(...accentTurquoise);
-        doc.setFillColor(248, 249, 250);
-        doc.roundedRect(20, y, 170, 25, 3, 3, 'FD');
-        
-        doc.setFontSize(11);
-        doc.setFont('helvetica', 'bold');
-        doc.setTextColor(...textDark);
-        doc.text('BUSINESS DETAILS', 25, y + 7);
-        
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(10);
-        doc.text('Contact Person: Shivakumar G', 25, y + 13);
-        doc.text('Phone: 9845452391', 25, y + 18);
-        doc.text('Location: Bengaluru - 560079', 25, y + 23);
-        y += 35;
-        
-        // Services header
-        doc.setFontSize(14);
-        doc.setFont('helvetica', 'bold');
-        doc.setTextColor(...primary);
-        doc.text('SELECTED SERVICES', 20, y);
         y += 8;
-        
-        doc.setDrawColor(...accentBlue);
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(22);
+        doc.setTextColor(...cBlue);
+        doc.text('QUOTATION', 105, y, { align: 'center' });
+        y += 8;
+
+        // Date
+        const dateStr = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(...cLight);
+        doc.text('Date: ' + dateStr, 105, y, { align: 'center' });
+        y += 12;
+
+        // ── Business Details box ────────────────────────────────────
+        doc.setFillColor(244, 247, 250);
+        doc.setDrawColor(...cTurquoise);
         doc.setLineWidth(0.5);
+        doc.roundedRect(20, y, 170, 28, 3, 3, 'FD');
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(10);
+        doc.setTextColor(...cPrimary);
+        doc.text('BUSINESS DETAILS', 25, y + 7);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(...cDark);
+        doc.text('Contact : Shivakumar G  |  Ph: 9845452391', 25, y + 13);
+        doc.text('Address : Vijaynagar, Bengaluru, KA - 560079', 25, y + 19);
+        doc.setTextColor(...cBlue);
+        doc.text('Instagram: instagram.com/mastervideo_shivu', 25, y + 25);
+        doc.setTextColor(24, 119, 242);
+        doc.text('Facebook : facebook.com/share/1E1Fz95WQG', 110, y + 25);
+        y += 36;
+
+        // ── Selected Services header ────────────────────────────────
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(12);
+        doc.setTextColor(...cPrimary);
+        doc.text('SELECTED SERVICES', 20, y);
+        y += 4;
+        doc.setDrawColor(...cBlue);
+        doc.setLineWidth(0.4);
         doc.line(20, y, 190, y);
-        y += 10;
-        
-        // Collect services
+        y += 8;
+
+        // ── Collect services ────────────────────────────────────────
         const categories = {
             'Photography Services': [],
             'Videography Services': [],
             'Premium Add-ons': []
         };
-        
+
         document.querySelectorAll('.service-item-modern').forEach(item => {
-            const quantity = parseInt(item.querySelector('.qty-input').value);
-            if (quantity > 0) {
-                const name = item.querySelector('h4').textContent;
+            const qty = parseInt(item.querySelector('.qty-input').value);
+            if (qty > 0) {
+                const name  = item.querySelector('h4').textContent.trim();
                 const price = parseInt(item.dataset.price);
-                const total = price * quantity;
-                
-                let category = 'Premium Add-ons';
-                if (name.toLowerCase().includes('photo')) {
-                    category = 'Photography Services';
-                } else if (name.toLowerCase().includes('video') || name.toLowerCase().includes('mixing')) {
-                    category = 'Videography Services';
-                }
-                
-                categories[category].push({ name, quantity, price, total });
+                const total = price * qty;
+                const nl    = name.toLowerCase();
+                let cat = 'Premium Add-ons';
+                if (nl.includes('photo')) cat = 'Photography Services';
+                else if (nl.includes('video') || nl.includes('mixing')) cat = 'Videography Services';
+                categories[cat].push({ name, qty, price, total });
             }
         });
-        
-        // Add services by category
-        Object.keys(categories).forEach(category => {
-            if (categories[category].length > 0) {
-                if (y > 250) {
-                    doc.addPage();
-                    y = 20;
-                }
-                
-                doc.setFontSize(12);
+
+        // ── Render each category ────────────────────────────────────
+        Object.entries(categories).forEach(([cat, services]) => {
+            if (!services.length) return;
+
+            if (y > 240) { doc.addPage(); y = 20; }
+
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(11);
+            doc.setTextColor(...cBlue);
+            doc.text(cat, 20, y);
+            y += 6;
+
+            services.forEach(s => {
+                if (y > 265) { doc.addPage(); y = 20; }
+
                 doc.setFont('helvetica', 'bold');
-                doc.setTextColor(...accentBlue);
-                doc.text(category, 20, y);
-                y += 7;
-                
                 doc.setFontSize(10);
+                doc.setTextColor(...cDark);
+                doc.text(s.name, 26, y);
+
                 doc.setFont('helvetica', 'normal');
-                doc.setTextColor(...textDark);
-                
-                categories[category].forEach(service => {
-                    if (y > 270) {
-                        doc.addPage();
-                        y = 20;
-                    }
-                    
-                    doc.setFont('helvetica', 'bold');
-                    doc.text(service.name, 25, y);
-                    y += 5;
-                    
-                    doc.setFont('helvetica', 'normal');
-                    doc.setTextColor(...textLight);
-                    doc.text(`Sessions: ${service.quantity} × ₹${service.price.toLocaleString('en-IN')}`, 30, y);
-                    doc.text(`Subtotal: ₹${service.total.toLocaleString('en-IN')}`, 120, y);
-                    y += 8;
-                    
-                    doc.setTextColor(...textDark);
-                });
-                
+                doc.setFontSize(9);
+                doc.setTextColor(...cLight);
                 y += 5;
-            }
+                doc.text(s.qty + ' session(s)  x  ' + fmt(s.price) + '  =  ' + fmt(s.total), 30, y);
+                y += 7;
+            });
+            y += 3;
         });
-        
-        // Summary box
-        if (y > 230) {
-            doc.addPage();
-            y = 20;
-        }
-        
-        const totalAmount = document.getElementById('total-amount-float').textContent;
-        
-        doc.setDrawColor(...accentTurquoise);
-        doc.setFillColor(...accentBlue);
-        doc.roundedRect(20, y, 170, 30, 3, 3, 'FD');
-        
-        doc.setFontSize(12);
+
+        // ── Summary box ─────────────────────────────────────────────
+        if (y > 220) { doc.addPage(); y = 20; }
+
+        const rawTotal = totalAmountEl.textContent.replace(/[^\d]/g, '');
+        const fmtTotal = fmt(rawTotal);
+
+        doc.setFillColor(...cBlue);
+        doc.setDrawColor(...cTurquoise);
+        doc.roundedRect(20, y, 170, 28, 3, 3, 'FD');
+
         doc.setFont('helvetica', 'bold');
-        doc.setTextColor(255, 255, 255);
+        doc.setFontSize(11);
+        doc.setTextColor(...cWhite);
         doc.text('QUOTATION SUMMARY', 25, y + 8);
-        
-        doc.setFontSize(11);
-        doc.text(`Total Sessions: ${totalSessions}`, 25, y + 16);
-        
-        doc.setFontSize(16);
-        doc.text(`TOTAL AMOUNT: ${totalAmount}`, 25, y + 25);
-        y += 40;
-        
-        // Album pricing
-        doc.setDrawColor(...textLight);
-        doc.setFillColor(255, 243, 205);
-        doc.roundedRect(20, y, 170, 20, 3, 3, 'FD');
-        
-        doc.setFontSize(11);
-        doc.setFont('helvetica', 'bold');
-        doc.setTextColor(133, 100, 4);
-        doc.text('ALBUM PRICING', 25, y + 7);
-        
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(9);
-        doc.text('• ₹300 per sheet (Size: 12 x 30 or 12 x 36 inches)', 25, y + 12);
-        doc.text('• ₹1,500 per pad', 25, y + 17);
-        y += 30;
-        
-        // Notes
-        if (y > 250) {
-            doc.addPage();
-            y = 20;
-        }
-        
+
         doc.setFontSize(10);
+        doc.text('Total Sessions : ' + totalSessions, 25, y + 16);
+
+        doc.setFontSize(14);
+        doc.text('TOTAL AMOUNT : ' + fmtTotal, 25, y + 24);
+        y += 36;
+
+        // ── Album Pricing ───────────────────────────────────────────
+        if (y > 250) { doc.addPage(); y = 20; }
+
+        doc.setFillColor(255, 249, 219);
+        doc.setDrawColor(245, 158, 11);
+        doc.roundedRect(20, y, 170, 18, 3, 3, 'FD');
+
         doc.setFont('helvetica', 'bold');
-        doc.setTextColor(...textDark);
-        doc.text('IMPORTANT NOTES:', 20, y);
-        y += 6;
-        
+        doc.setFontSize(10);
+        doc.setTextColor(133, 100, 4);
+        doc.text('ALBUM PRICING', 25, y + 6);
+
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(9);
-        doc.setTextColor(...textLight);
-        
-        const notes = [
-            '• All prices are in Indian Rupees (INR)',
-            '• The item coverage above is based on each session',
-            '• This quotation is valid for 30 days from the date above',
-            '• Final pricing may vary based on specific requirements',
-            '• Please contact us for any customizations or queries'
-        ];
-        
-        notes.forEach(note => {
-            doc.text(note, 20, y);
+        doc.text('Rs. 300 per sheet (12x30 or 12x36 inches)   |   Rs. 1,500 per pad', 25, y + 13);
+        y += 26;
+
+        // ── Notes ───────────────────────────────────────────────────
+        if (y > 250) { doc.addPage(); y = 20; }
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor(...cDark);
+        doc.text('NOTES:', 20, y);
+        y += 5;
+
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(...cLight);
+        [
+            'All prices are in Indian Rupees (INR).',
+            'Coverage is based on each session.',
+            'This quotation is valid for 30 days.',
+            'Final pricing may vary based on specific requirements.'
+        ].forEach(note => {
+            doc.text('• ' + note, 22, y);
             y += 5;
         });
-        
-        // Footer
-        y = 272;
-        doc.setDrawColor(...accentBlue);
-        doc.setLineWidth(0.5);
-        doc.line(20, y, 190, y);
-        y += 7;
-        
-        doc.setFontSize(10);
+
+        // ── PDF Footer (fixed at bottom of last page) ───────────────
+        const pageH = doc.internal.pageSize.getHeight();
+        doc.setDrawColor(...cBlue);
+        doc.setLineWidth(0.4);
+        doc.line(20, pageH - 22, 190, pageH - 22);
+
         doc.setFont('helvetica', 'bold');
-        doc.setTextColor(...primaryColor);
-        doc.text('Master Video Photography', 105, y, { align: 'center' });
-        y += 6;
+        doc.setFontSize(9);
+        doc.setTextColor(...cPrimary);
+        doc.text('Master Video Photography', 105, pageH - 16, { align: 'center' });
 
         doc.setFont('helvetica', 'normal');
-        doc.setFontSize(9);
-        doc.setTextColor(...textLight);
-        doc.text('Vijaynagar, Bengaluru, KA - 560079  |  Ph: 9845452391', 105, y, { align: 'center' });
-        y += 5;
-        doc.textWithLink('instagram.com/mastervideo_shivu', 55, y, { url: 'https://www.instagram.com/mastervideo_shivu', align: 'center' });
-        doc.setTextColor(150,150,150);
-        doc.text('  |  ', 105, y, { align: 'center' });
-        doc.setTextColor(24,119,242);
-        doc.textWithLink('facebook.com/MasterVideo', 140, y, { url: 'https://www.facebook.com/share/1E1Fz95WQG' });
-        y += 5;
+        doc.setFontSize(8);
+        doc.setTextColor(...cLight);
+        doc.text('Vijaynagar, Bengaluru, KA-560079  |  9845452391', 105, pageH - 11, { align: 'center' });
 
-        doc.setTextColor(...textLight);
-        doc.text('Thank you for considering Master Video Photography!', 105, y, { align: 'center' });
-        
-        // Save
-        const timestamp = new Date().toISOString().split('T')[0];
-        doc.save(`Master_Video_Photography_Quotation_${timestamp}.pdf`);
-        
+        doc.setTextColor(...cBlue);
+        doc.textWithLink('instagram.com/mastervideo_shivu', 52, pageH - 6, { url: 'https://www.instagram.com/mastervideo_shivu' });
+        doc.setTextColor(...cLight);
+        doc.text('  |  ', 101, pageH - 6);
+        doc.setTextColor(24, 119, 242);
+        doc.textWithLink('facebook.com/share/1E1Fz95WQG', 112, pageH - 6, { url: 'https://www.facebook.com/share/1E1Fz95WQG' });
+
+        // ── Save ────────────────────────────────────────────────────
+        const ts = new Date().toISOString().split('T')[0];
+        doc.save('MasterVideo_Quotation_' + ts + '.pdf');
         showNotification('PDF quotation downloaded successfully!', 'success');
+
     } catch (error) {
         console.error('PDF generation error:', error);
         showNotification('Error generating PDF. Please try again.', 'error');

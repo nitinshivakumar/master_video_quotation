@@ -154,8 +154,8 @@ function loadImageAsBase64(src) {
             canvas.height = img.height;
             const ctx = canvas.getContext('2d');
             
-            // Fill white background
-            ctx.fillStyle = '#3d5a6b';
+            // White background so black logo lines show clearly
+            ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             // Draw image
@@ -388,18 +388,32 @@ async function downloadPDFQuotation() {
         });
         
         // Footer
-        y = 280;
+        y = 272;
         doc.setDrawColor(...accentBlue);
         doc.setLineWidth(0.5);
         doc.line(20, y, 190, y);
-        y += 6;
+        y += 7;
         
         doc.setFontSize(10);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(...primaryColor);
+        doc.text('Master Video Photography', 105, y, { align: 'center' });
+        y += 6;
+
         doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(...textLight);
+        doc.text('Vijaynagar, Bengaluru, KA - 560079  |  Ph: 9845452391', 105, y, { align: 'center' });
+        y += 5;
+        doc.textWithLink('instagram.com/mastervideo_shivu', 55, y, { url: 'https://www.instagram.com/mastervideo_shivu', align: 'center' });
+        doc.setTextColor(150,150,150);
+        doc.text('  |  ', 105, y, { align: 'center' });
+        doc.setTextColor(24,119,242);
+        doc.textWithLink('facebook.com/MasterVideo', 140, y, { url: 'https://www.facebook.com/share/1E1Fz95WQG' });
+        y += 5;
+
         doc.setTextColor(...textLight);
         doc.text('Thank you for considering Master Video Photography!', 105, y, { align: 'center' });
-        y += 5;
-        doc.text('We look forward to capturing your special moments.', 105, y, { align: 'center' });
         
         // Save
         const timestamp = new Date().toISOString().split('T')[0];

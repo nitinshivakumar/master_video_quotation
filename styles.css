@@ -142,14 +142,15 @@ body {
 .logo-wrapper {
     width: 60px;
     height: 60px;
-    background: var(--gradient-primary);
+    background: #ffffff;
     border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 6px;
     box-shadow: var(--shadow-md);
     transition: var(--transition);
+    border: 1px solid #e5e7eb;
 }
 
 .logo-wrapper:hover {
@@ -161,7 +162,6 @@ body {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: brightness(0) invert(1);
 }
 
 .logo-text {
@@ -230,17 +230,16 @@ body {
 }
 
 .logo-hero-wrapper {
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
     margin: 0 auto 2rem;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    background: #ffffff;
     border-radius: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 30px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.8);
     box-shadow: var(--shadow-xl);
     animation: logoFloat 6s ease-in-out infinite;
 }
@@ -258,7 +257,6 @@ body {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: brightness(0) invert(1);
 }
 
 .hero-title {
@@ -1041,55 +1039,152 @@ body {
 }
 
 /* Footer */
+/* ── Contact icon colours ── */
+.contact-icon-modern { background: var(--gradient-accent); }
+.contact-icon-modern.phone-icon    { background: linear-gradient(135deg,#2b9fd8,#4ec9c9); }
+.contact-icon-modern.location-icon { background: linear-gradient(135deg,#3d5a6b,#7a9189); }
+.contact-icon-modern.person-icon   { background: linear-gradient(135deg,#7a9189,#4ec9c9); }
+.contact-icon-modern.insta-icon    { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+.contact-icon-modern.fb-icon       { background: linear-gradient(135deg,#1877f2,#0d5bc5); }
+
+/* ── Footer ── */
 .footer {
     background: var(--primary);
     color: white;
-    padding: 3rem 2rem;
+    padding: 4rem 2rem 2rem;
 }
 
 .footer-content {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
     text-align: center;
 }
 
 .footer-logo-section {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
+/* WHITE background only on the logo box — everything else stays brand-coloured */
 .footer-logo-wrapper {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 1rem;
-    background: rgba(255, 255, 255, 0.1);
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 1.25rem;
+    background: #ffffff;          /* ← white ONLY here */
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 15px;
+    box-shadow: var(--shadow-lg);
 }
 
 .footer-logo {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: brightness(0) invert(1);
 }
 
-.footer-logo-section p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.125rem;
+.footer-tagline {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.1rem;
     font-weight: 500;
+    margin-bottom: 0.6rem;
+}
+
+.footer-address,
+.footer-phone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+    margin: 0.3rem 0;
+    width: 100%;
+}
+
+.footer-address svg,
+.footer-phone svg { flex-shrink: 0; }
+
+.footer-phone a {
+    color: var(--accent-turquoise);
+    text-decoration: none;
+    font-weight: 600;
+}
+.footer-phone a:hover { text-decoration: underline; }
+
+/* Social buttons */
+.footer-social {
+    margin: 2.5rem 0 2rem;
+}
+
+.footer-social h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    font-family: 'Barlow', sans-serif;
+    transition: var(--transition);
+    color: white;
+}
+
+.social-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.instagram-btn {
+    background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+    box-shadow: 0 4px 15px rgba(220,39,67,0.35);
+}
+
+.facebook-btn {
+    background: linear-gradient(135deg,#1877f2,#0d5bc5);
+    box-shadow: 0 4px 15px rgba(24,119,242,0.35);
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
 }
 
 .footer-bottom {
     padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 .footer-bottom p {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255,255,255,0.5);
     font-size: 0.875rem;
+}
+
+/* Contact grid — 3 cols then wraps */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 /* Responsive */

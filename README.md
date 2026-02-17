@@ -99,7 +99,7 @@ https://USERNAME.github.io/REPOSITORY-NAME/
 
 For example:
 ```
-https://shivakumarg.github.io/master-video-photography/
+https://nitinshivakumar.github.io/master_video_quotation/
 ```
 
 ## 📱 Usage
